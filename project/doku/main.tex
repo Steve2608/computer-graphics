@@ -1,0 +1,34 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{dirtytalk}
+
+\author{Martin Peche, 01555052\\Stefan Brandl, 01555842}
+\title{Rescue mission -- CG-Project report}
+\date{20. June, 2018}
+
+
+% \let\oldsection\section
+% \renewcommand\section{\clearpage\oldsection}
+
+\interfootnotelinepenalty=10000
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{10pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textbf{Rescue mission}}
+\rhead{Martin Peche, 01555052, Stefan Brandl, 01555842}
+\cfoot{Page \thepage}
+
+\begin{document}
+	\maketitle
+
+	\input{nodes.tex}
+	\input{requirements.tex}
+	\input{special.tex}
+\end{document}

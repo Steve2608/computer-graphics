@@ -1,0 +1,6 @@
+Auto Reload für Firefox:
+https://addons.mozilla.org/en-US/firefox/addon/auto-reload/
+
+Function references:
+(https://www.khronos.org/registry/webgl/specs/latest/2.0/)
+Von Mozilla -> https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext

@@ -1,0 +1,44 @@
+\section{Custom scene graph nodes} \label{sec:customSGNodes}
+
+For our project, we implemented a bunch of custom scene graph nodes.
+The source of all of them is placed in the directory code/nodes/ .
+
+\subsection*{Skybox node} \label{subsec:skyboxNode}
+For the sky in the background, a separate \js{SkyboxSGNode} was introduced.
+The node works by rendering a 2x2x2 cube around the camera, ranging from $-1$ to 1 in each direction x, y, z.
+While rendering, all depth checks are disabled, effectively making the skybox draw over anything rendered before it on the screen.
+This is the reason why the cube does not need to bee bigger than the whole scene.
+Additionally, depth writing is disabled, meaning that any object rendered will overdraw the skybox, making it appear in the background every time.
+
+\subsection*{Particle system} \label{subsec:particleSystemNode}
+The particle system is implemented as a node on its own, enabling it to be transformed, rotated and scaled as any other object.
+More details on the implementation and the technical details particle system are in chapter~\ref{sec:particleSystem}.
+
+\subsection*{Texture node} \label{subsec:textureNode}
+For applying textures, we took the TextureSGNode from the labs, and adapted.
+Each texture node increments a variable in the context determining the texture unit which should be used.
+If no one is set in the shader, texture unit 0 is used by default (\footnote{provide code sample?})
+
+\subsection*{Animation node} \label{subsec:animationNode}
+For realizing the animations, a special AnimationSGNode was introduced.
+It is basically a TransformationSGNode, but instead of using a static transformation matrix,
+it is supplied a function, which generates a arbitrary transformation matrix based on the
+current animation time \footnote{Satz k\"urzen}.
+
+\subsection*{Animation trigger node} \label{subsec:animationTriggerNode}
+A AnimationTriggerSGNode enables the definition of such-called \say{trigger point}.
+A trigger point starts an animation as soon as the camera enters a defined radius around the origin of the trigger.
+
+As long as the animation is not triggered yet, all children of this node receive a time of 0 through the context,
+effectively halting the animation of all AnimationSGNode s and other time using nodes.
+When the AnimationTriggerSGNode is triggered, the current time point is stored.
+
+A AnimationTriggerSGNode can only be triggered once and can not be reset for now.
+
+\subsection*{Spotlight node} \label{subsec:spotlightNode}
+The spotlight node is used to define a spotlight in the world.
+It inherits from the LightSGNode and provides two additional uniforms:
+\begin{description}
+	\item[angle] Specifies the angle of the cone in which the light illuminates
+	\item[direction] Defines the direction of the Spotlight. This is a direction vector
+\end{description}
